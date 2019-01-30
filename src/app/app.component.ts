@@ -41,6 +41,11 @@ export class AppComponent {
   avatar: String;
   scanSub: any;
 
+  //header
+  diasEscaneados: any = 0;
+  descuentoEscaneados = parseInt(this.diasEscaneados)*10 / 100;
+
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -71,6 +76,8 @@ export class AppComponent {
 
         this.avatar = this.authService.getAvatar();
 
+        this.diasEscaneados = this.authService.getDias();
+
         this.splashScreen.hide();
 
       });
@@ -91,12 +98,11 @@ export class AppComponent {
           this.scanSub = this.qrScanner.scan().subscribe((d) => {
 
             if (d == "suma") {
-              this.toast.mostrarToast("¡Día sumado!", 100);
               this.sumaDias();
             } else {
               this.toast.mostrarToast("Código incorrecto", 100);
             }
-            
+
 
 
             window.document.querySelector('ion-app').classList.remove('cameraView');  //mostramos vista de la app
@@ -127,17 +133,13 @@ export class AppComponent {
       avatar: datosSesion.avatar,
       contraseña: datosSesion.contraseña,
       dias: datosSesion.dias + 1,
-      logged: datosSesion.logged,
       usuario: datosSesion.usuario,
     };
 
-    console.log(id);
-    console.log(data);
-
-    console.log(id);
-    console.log(id);
-    console.log(id);
-
+    this.authService.actualizarUsuario(id, data).then((d) => {
+      this.diasEscaneados = this.authService.getDias()
+      this.toast.mostrarToast("¡Día sumado!", 100);
+    });
   }
 
   async mostrarModalLogin() {
@@ -148,6 +150,7 @@ export class AppComponent {
     modal.onDidDismiss().then(() => {
 
       this.avatar = this.authService.getAvatar();
+      this.diasEscaneados = this.authService.getDias();
 
     });
 

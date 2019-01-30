@@ -54,17 +54,31 @@ export class AuthService {
     return this.usuariosColeccion.ref.where("usuario", "==", usuario).where("contraseña", "==", contraseña).get();
   }
 
-  setDiasUsuario(){
-    return this.usuariosColeccion.ref.where("usuario", )
+  actualizarUsuario(id, data) {
+    return new Promise((resolve, reject) => {
+
+      this.datosSesion.dias = data.dias;
+
+      this.usuariosColeccion.ref.where("usuario", "==", data.usuario).get()
+        .then((d) => {
+          this.usuariosColeccion.doc(d.docs[0].id).update(data).then(() => {
+            resolve();
+          });
+
+        });
+    });
   }
 
-
   //Inicio y Cierre de Sesión
-  iniciarSesion(datosUsuario) {
+  iniciarSesion(datosUsuario, id) {
 
     this.datosSesion = datosUsuario;
 
     this.datosSesion.logged = true;
+
+    this.datosSesion.id = id;
+
+    this.datosSesion.dias = datosUsuario.dias;
 
     this.storage.set('datosSesion', this.datosSesion)
       .then(() => {
@@ -79,6 +93,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.datosSesion.logged = false;
       this.datosSesion.avatar = environment.defaultAvatar;
+      this.datosSesion.dias = "";
       this.storage.remove('datosSesion').then(() => {
         this.initChecking().then(d => {
           resolve();
@@ -119,11 +134,11 @@ export class AuthService {
     return this.datosSesion.avatar;
   }
 
-  getDias(){
+  getDias() {
     return this.datosSesion.dias;
   }
 
-  setDias(){
+  setDias() {
     return this.datosSesion.dias;
   }
 }

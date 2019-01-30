@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -149,11 +150,11 @@ export class ModalLoginPage implements OnInit {
 
         } else {
 
+          let id = d.docs[0].id;
+
           this.datosUsuario = d.docs[0].data();
 
-          this.authServicio.iniciarSesion(this.datosUsuario);
-
-          console.log(this.authServicio.getDatosSesion());
+          this.authServicio.iniciarSesion(this.datosUsuario, id);
 
           this.loadingController.dismiss();
 
@@ -200,7 +201,7 @@ export class ModalLoginPage implements OnInit {
     let data = {
       usuario: this.createUserFormGroup.get("usuario").value,
       contraseña: this.createUserFormGroup.get("contraseña").value,
-      avatar: '',
+      avatar: environment.defaultAvatar,
       dias: 0,
     };
 
