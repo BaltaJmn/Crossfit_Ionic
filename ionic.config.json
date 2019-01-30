@@ -1,5 +1,7 @@
 {
   "name": "Crossfit",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

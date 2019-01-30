@@ -75,3 +75,14 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+  /* Para gestionar la transparencia de la aplicación cuando se activa la cámara*/
+  ion-app{
+    opacity:1;
+    background: var(--ion-background-color)!important;
+  }
+  ion-app.cameraView{opacity:0}
+  ion-app.cameraView{
+    background: transparent url("../assets/icon/favicon.png") !important;
+    background-size: 100% 100% !important;
+  }

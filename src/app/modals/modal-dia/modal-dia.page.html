@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-row>
+      <ion-col float-left>
+        <ion-title>
+          <ion-icon name="ios-arrow-back" (click)="cerrarModal()"></ion-icon>
+          {{titulo}}
+        </ion-title>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"
+    style="background-color:var(--ion-color-primary)"
+    color="light">
+
+    <ion-segment-button layout="icon-start" value="0">
+      <ion-icon name="flame" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{tab1}}</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button layout="icon-start" value="1">
+      <ion-icon name="fitness" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{tab2}}</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button layout="icon-start" value="2">
+      <ion-icon name="ribbon" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{tab3}}</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%':
+    (100/this.tabs.length)}" style="margin-top:2px"></div>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-slides #slides
+    (ionSlideTransitionStart)="updateIndicatorPosition();updateCat(slides.getActiveIndex())"
+    (ionSlideWillChange)="updateIndicatorPosition()"
+    (ionSlideDidChange)="updateIndicatorPosition()"
+    (ionSlideDidChange)="metodoPrincipal()"
+    #SwipedTabsSlider
+    (ionSlideDrag)="animateIndicator($event)">
+
+    <ion-slide>
+
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item-sliding *ngFor="let item of listaEntrenoPanel;let i= index">
+          <ion-item>
+            <ion-label>{{item.ej1}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej2}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej3}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej4}}</ion-label>
+          </ion-item>
+
+        </ion-item-sliding>
+      </ion-list>
+
+      <ion-footer>
+        <ion-fab-button *ngIf="isLogged()" (click)="mostrarModalEditar()">
+          <ion-icon slot="end" name="create"></ion-icon>
+        </ion-fab-button>
+      </ion-footer>
+
+    </ion-slide>
+
+
+    <ion-slide>
+
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item-sliding *ngFor="let item of listaEntrenoPanel;let i= index">
+          <ion-item>
+            <ion-label>{{item.ej1}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej2}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej3}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej4}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item-sliding *ngFor="let item of listaEntrenoPanel;let i= index">
+          <ion-item>
+            <ion-label>{{item.ej1}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej2}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej3}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>{{item.ej4}}</ion-label>
+            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+
+    </ion-slide>
+
+  </ion-slides>
+
+  <!-- <ion-infinite-scroll #infiniteScroll threshold="10px">
+    <ion-infinite-scroll-content loadingSpinner="null" loadingText="">
+      <img src="../../../assets/imgs/loading.svg" style="width:48px
+        !important;margin:auto;position:relative">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

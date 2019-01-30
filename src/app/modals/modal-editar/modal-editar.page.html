@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modalEditar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="editFormGroup" (ngSubmit)="edit()">
+
+    <ion-item>
+      <ion-label>Ej1</ion-label>
+      <ion-input formControlName="ej1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ej2</ion-label>
+      <ion-input formControlName="ej2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ej3</ion-label>
+      <ion-input formControlName="ej3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ej4</ion-label>
+      <ion-input formControlName="ej4"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!editFormGroup.valid"> Confirmar </ion-button>
+
+  </form>
+</ion-content>

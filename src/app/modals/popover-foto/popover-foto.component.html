@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-title>{{ace}}</ion-title>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>
+
+      <ion-button (click)="cancelar()">
+        <ion-icon slot="start" name="close-circle"></ion-icon>
+        <span>Cancelar</span>
+      </ion-button>
+
+      <ion-button (click)="aceptar()">
+        <ion-icon slot="end" name="checkmark-circle"></ion-icon>
+        <span>Aceptar</span>
+      </ion-button>
+
+    </ion-label>
+  </ion-item>
+</ion-content>

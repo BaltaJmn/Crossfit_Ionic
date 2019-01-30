@@ -1,6 +1,9 @@
+import { ModalEditarPage } from './../modals/modal-editar/modal-editar.page';
+import { ModalLoginPage } from './../modals/modal-login/modal-login.page';
+import { ModalDiaPage } from './../modals/modal-dia/modal-dia.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
@@ -10,6 +13,7 @@ import { HomePage } from './home.page';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([
       {
@@ -18,6 +22,12 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ModalDiaPage, ModalEditarPage], 
+
+  entryComponents: [
+    HomePage,
+    ModalDiaPage, 
+    ModalEditarPage
+  ]
 })
 export class HomePageModule {}

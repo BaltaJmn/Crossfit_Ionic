@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="ios-arrow-back" (click)="cerrarModal()"></ion-icon>
+    <ion-title style="text-align: center; margin-bottom: 10px; margin-top:
+      10px;">Iniciar Sesión</ion-title>
+    <ion-avatar style="text-align: center;margin:auto;cursor: pointer;">
+      <ion-img src="assets/defaultProfile.jpg" width="150px"
+        style="border:2px
+        solid #fff"></ion-img>
+    </ion-avatar>
+  </ion-toolbar>
+
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"
+    style="background-color:var(--ion-color-primary)"
+    color="light">
+
+    <ion-segment-button layout="icon-start" value="0">
+      <ion-icon name="log-in" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{tab1}}</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button layout="icon-start" value="1">
+      <ion-icon name="person-add" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{tab2}}</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%':
+    (100/this.tabs.length)}" style="margin-top:2px"></div>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-slides #slides
+    (ionSlideTransitionStart)="updateIndicatorPosition();updateCat(slides.getActiveIndex())"
+    (ionSlideWillChange)="updateIndicatorPosition()"
+    (ionSlideDidChange)="updateIndicatorPosition()"
+    #SwipedTabsSlider
+    (ionSlideDrag)="animateIndicator($event)">
+
+    <ion-slide>
+
+      <form [formGroup]="loginUserFormGroup" (ngSubmit)="login()">
+
+        <ion-item>
+          <ion-label>Usuario</ion-label>
+          <ion-input placeholder="Usuario" formControlName="usuario"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Contraseña</ion-label>
+          <ion-input placeholder="Contraseña" formControlName="contraseña"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" [disabled]="!loginUserFormGroup.valid">Iniciar
+          Sesión</ion-button>
+
+      </form>
+
+    </ion-slide>
+
+
+    <ion-slide>
+
+      <form [formGroup]="createUserFormGroup" (ngSubmit)="register()">
+        <ion-item>
+          <ion-label>Usuario</ion-label>
+          <ion-input placeholder="Usuario" formControlName="usuario"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Contraseña</ion-label>
+          <ion-input placeholder="Contraseña" formControlName="contraseña"></ion-input>
+        </ion-item>
+
+        <ion-button color="primary" (click)="insertarFotoPerfil()">Primary</ion-button>
+
+        <ion-button type="submit" [disabled]="!createUserFormGroup.valid">Registrar</ion-button>
+      </form>
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>
