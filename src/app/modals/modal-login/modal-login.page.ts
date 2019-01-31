@@ -25,6 +25,7 @@ export class ModalLoginPage implements OnInit {
   tabs = ["selectTab(0)", "selectTab(1)"];
   public category: any = "0";
   ntabs = 2;
+  titulo: any = "Iniciar Sesión";
 
   //Formulario
   private createUserFormGroup: FormGroup;
@@ -83,6 +84,11 @@ export class ModalLoginPage implements OnInit {
     cat.then(dat => {
       this.category = dat;
       this.category = +this.category;
+      if (this.category == 0) {
+        this.titulo = "Iniciar Sesión";
+      } else {
+        this.titulo = "Crear Usuario";
+      }
     });
   }
 
@@ -212,9 +218,6 @@ export class ModalLoginPage implements OnInit {
         let base64Image = 'data:image/jpeg;base64, ' + imageData;
         data.avatar = base64Image;
 
-        //aqui he terminado de echar la foto
-        // empiezo a guardar
-
         this.authServicio.crearUsuario(data)
           .then((docRef) => {
 
@@ -252,29 +255,5 @@ export class ModalLoginPage implements OnInit {
       id: 1,
       text: msg,
     });
-  }
-
-  async presentAlertConfirm(msg, type?) {
-    const alert = await this.alertController.create({
-      header: '¿Desea añadir foto de perfil?',
-      message: msg,
-      buttons: [
-        {
-          text: "cancel",
-          role: 'cancel',
-          handler: () => {
-            alert.dismiss();
-          }
-        }, {
-          text: 'Ok',
-          cssClass: 'ok',
-          handler: () => {
-
-          }
-        }
-      ]
-    });
-
-    await alert.present();
   }
 }

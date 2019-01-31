@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-icon name="ios-arrow-back" (click)="cerrarModal()"></ion-icon>
     <ion-title style="text-align: center; margin-bottom: 10px; margin-top:
-      10px;">Iniciar Sesión</ion-title>
+      10px;">{{titulo}}</ion-title>
     <ion-avatar style="text-align: center;margin:auto;cursor: pointer;">
       <ion-img src="assets/defaultProfile.jpg" width="150px"
         style="border:2px
@@ -74,8 +74,6 @@
           <ion-label>Contraseña</ion-label>
           <ion-input placeholder="Contraseña" formControlName="contraseña"></ion-input>
         </ion-item>
-
-        <ion-button color="primary" (click)="insertarFotoPerfil()">Primary</ion-button>
 
         <ion-button type="submit" [disabled]="!createUserFormGroup.valid">Registrar</ion-button>
       </form>

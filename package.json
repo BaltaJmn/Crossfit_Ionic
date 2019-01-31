@@ -31,6 +31,8 @@
     "@ionic-native/vibration": "^5.0.0",
     "@ionic/angular": "4.0.0-rc.1",
     "@ionic/storage": "^2.2.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "angularfire2": "^5.1.1",
     "cordova-android": "7.1.4",
     "cordova-plugin-badge": "0.8.8",

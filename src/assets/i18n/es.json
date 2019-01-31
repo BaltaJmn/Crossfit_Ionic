@@ -1,0 +1,15 @@
+{
+    "totalDaysScanned": "Días escaneados: ",
+    "totalDiscount": "Descuento total",
+    "changeLang": "Español",
+    "dailyScan": "Escaneo Diario",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "loading": "Cargando",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "questLogout": "¿Quieres cerrar sesión?",
+    "usuario": "Usuario",
+    "password": "Contraseña",
+    "register": "Registrar"
+}

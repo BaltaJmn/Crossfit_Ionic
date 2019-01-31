@@ -16,7 +16,7 @@
           </ion-item>
 
           <ion-item *ngIf="isLogged()">
-            <ion-label>Descuento total: {{descuentoEscaneados}}</ion-label>
+            <ion-label>Descuento total: {{descuentoEscaneados}} €</ion-label>
           </ion-item>
 
         </ion-toolbar>
@@ -25,11 +25,11 @@
 
         <ion-item>
           <ion-icon slot="start" name="flag"></ion-icon>
-          <ion-label>Idioma</ion-label>
-          <ion-toggle slot="end"></ion-toggle>
+          <ion-label>{{"changeLang" | translate}}</ion-label>
+          <ion-toggle slot="end" (ionChange)="changeLang($event)"></ion-toggle>
         </ion-item>
 
-        <ion-item (click)="abreQR()" *ngIf="!isLogged()">
+        <ion-item (click)="abreQR()" *ngIf="isLogged()">
           <ion-icon slot="start" name="camera"></ion-icon>
           <ion-label>Escaneo Diario</ion-label>
           <ion-icon slot="end" name="radio-button-off"></ion-icon>

@@ -19,6 +19,7 @@ export const environment = {
   }, 
 
   defaultLanguage:"es", 
+  currentLanguages:['es','en'], //idiomas disponibles de la aplicación
   defaultAvatar:"assets/defaultProfile.jpg"
 };
 

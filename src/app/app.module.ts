@@ -30,6 +30,15 @@ import { PopoverLogoutComponent } from './modals/popover-logout/popover-logout.c
 import { PopoverFotoComponent } from './modals/popover-foto/popover-foto.component';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
 
+/*Importamos los módulos y funciones necesarias para la traducción */
+import { TranslateModule, TranslateLoader, TranslatePipe } from '@ngx-translate/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function setTranslateLoader(http: any) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+
 @NgModule({
   declarations: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent],
   entryComponents: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent],
@@ -42,7 +51,14 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     IonicStorageModule.forRoot(),
-    ToastModule
+    ToastModule,
+    HttpClientModule, TranslateModule.forRoot({  //Módulo de traducción
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (setTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     StatusBar,
@@ -52,7 +68,7 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     LocalNotifications,
     Flashlight,
     Camera,
-    DeviceMotion, 
+    DeviceMotion,
     QRScanner,
   ],
   bootstrap: [AppComponent]

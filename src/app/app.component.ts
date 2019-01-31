@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { PopoverFotoComponent } from './modals/popover-foto/popover-foto.component';
 import { ToastModule } from 'src/app/componentes/toast/toast.module';
@@ -18,6 +19,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { PopoverController } from '@ionic/angular';
 import { PopoverLogoutComponent } from './modals/popover-logout/popover-logout.component';
 
+//Translate
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -43,23 +46,24 @@ export class AppComponent {
 
   //header
   diasEscaneados: any = 0;
-  descuentoEscaneados = parseInt(this.diasEscaneados)*10 / 100;
+  descuentoEscaneados: any;
 
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public semanaServicio: SemanaservicioService,
-    public authService: AuthService,
-    public modalController: ModalController,
-    public navCtrl: NavController,
-    public loadingController: LoadingController,
-    public toast: ToastModule,
-    public camera: Camera,
-    public qrScanner: QRScanner,
-    public popoverController: PopoverController,
-    public flashlight: Flashlight
+    private semanaServicio: SemanaservicioService,
+    private authService: AuthService,
+    private modalController: ModalController,
+    private navCtrl: NavController,
+    private loadingController: LoadingController,
+    private toast: ToastModule,
+    private camera: Camera,
+    private qrScanner: QRScanner,
+    private popoverController: PopoverController,
+    private flashlight: Flashlight,
+    private translate: TranslateService,
   ) {
     this.logged = false;
     this.initializeApp();
@@ -69,6 +73,14 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
 
+      this.translate.addLangs(environment.currentLanguages);  //add all languages
+      this.translate.setDefaultLang(environment.defaultLanguage); //use default language
+      if (this.translate.getBrowserLang) {  //if browsers's language is avalaible is set up as default
+        if (environment.currentLanguages.includes(this.translate.getBrowserLang())) {
+          this.translate.use(this.translate.getBrowserLang());
+        }
+      }
+
       this.authService.initChecking().then(() => {
 
         this.toast.mostrarToast("datos cargados", 500);
@@ -77,6 +89,7 @@ export class AppComponent {
         this.avatar = this.authService.getAvatar();
 
         this.diasEscaneados = this.authService.getDias();
+        this.descuentoEscaneados = parseInt(this.diasEscaneados) * 10 / 100;
 
         this.splashScreen.hide();
 
@@ -138,8 +151,21 @@ export class AppComponent {
 
     this.authService.actualizarUsuario(id, data).then((d) => {
       this.diasEscaneados = this.authService.getDias()
+      this.descuentoEscaneados = parseInt(this.diasEscaneados) * 10 / 100;
       this.toast.mostrarToast("¡Día sumado!", 100);
     });
+  }
+
+  //Translate
+  changeLang(e) {
+    //console.log(e.detail.checked);
+    if (e.detail.checked) {
+      this.authService.setLang("en");
+      this.translate.use("en");
+    } else {
+      this.authService.setLang("es");
+      this.translate.use("es");
+    }
   }
 
   async mostrarModalLogin() {
@@ -151,6 +177,7 @@ export class AppComponent {
 
       this.avatar = this.authService.getAvatar();
       this.diasEscaneados = this.authService.getDias();
+      this.descuentoEscaneados = parseInt(this.diasEscaneados) * 10 / 100;
 
     });
 

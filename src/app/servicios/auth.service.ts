@@ -126,6 +126,15 @@ export class AuthService {
     return this.storage.set('datosSesion', this.datosSesion)
   }
 
+  getLang() {
+    return this.datosSesion.lang;
+  }
+
+  setLang(val) {
+    this.datosSesion.lang = val;
+    return this.storage.set('datosSesion', this.datosSesion);
+  }
+
   getId() {
     return this.datosSesion.id;
   }

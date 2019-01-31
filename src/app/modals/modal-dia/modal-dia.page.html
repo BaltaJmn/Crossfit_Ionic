@@ -70,12 +70,6 @@
         </ion-item-sliding>
       </ion-list>
 
-      <ion-footer>
-        <ion-fab-button *ngIf="isLogged()" (click)="mostrarModalEditar()">
-          <ion-icon slot="end" name="create"></ion-icon>
-        </ion-fab-button>
-      </ion-footer>
-
     </ion-slide>
 
 
@@ -85,22 +79,18 @@
         <ion-item-sliding *ngFor="let item of listaEntrenoPanel;let i= index">
           <ion-item>
             <ion-label>{{item.ej1}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej2}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej3}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej4}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
         </ion-item-sliding>
       </ion-list>
@@ -113,22 +103,18 @@
         <ion-item-sliding *ngFor="let item of listaEntrenoPanel;let i= index">
           <ion-item>
             <ion-label>{{item.ej1}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej2}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej3}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>{{item.ej4}}</ion-label>
-            <ion-icon *ngIf="isLogged()" slot="end" name="create"></ion-icon>
           </ion-item>
         </ion-item-sliding>
       </ion-list>
@@ -137,10 +123,9 @@
 
   </ion-slides>
 
-  <!-- <ion-infinite-scroll #infiniteScroll threshold="10px">
-    <ion-infinite-scroll-content loadingSpinner="null" loadingText="">
-      <img src="../../../assets/imgs/loading.svg" style="width:48px
-        !important;margin:auto;position:relative">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll> -->
+  <ion-fab style="margin-bottom:50px;">
+    <ion-fab-button *ngIf="isLogged()" (click)="mostrarModalEditar()"><ion-icon
+        slot="end" name="create"></ion-icon></ion-fab-button>
+  </ion-fab>
+
 </ion-content>
