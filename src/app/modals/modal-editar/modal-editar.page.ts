@@ -51,6 +51,7 @@ export class ModalEditarPage implements OnInit {
   ngOnInit() {
   }
 
+  /* Reune los datos del formulario y los carga en la base de datos */
   edit() {
     let data = {
       categoria: this.categoria,
@@ -63,6 +64,21 @@ export class ModalEditarPage implements OnInit {
 
     this.semanaServicio.actualizaEntrenamiento(this.id, data);
     this.cerrarModal();
+  }
+
+  //Loading
+
+  async presentLoading(msg) {
+
+    let myloading = await this.loadingController.create({
+      message: msg
+    });
+
+    return await myloading.present();
+  }
+
+  finishLoading() {
+    this.loadingController.dismiss();
   }
 
   cerrarModal() {

@@ -1,3 +1,4 @@
+import { ModalRankingComponent } from './modals/modal-ranking/modal-ranking.component';
 import { environment } from './../environments/environment';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { PopoverFotoComponent } from './modals/popover-foto/popover-foto.component';
@@ -69,6 +70,7 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  /* Carga los datos almacenados en la memoria del teléfono sobre las sesiones anteriores */
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -83,7 +85,6 @@ export class AppComponent {
 
       this.authService.initChecking().then(() => {
 
-        this.toast.mostrarToast("datos cargados", 500);
         this.logged = this.authService.isLogged();
 
         this.avatar = this.authService.getAvatar();
@@ -98,6 +99,11 @@ export class AppComponent {
     });
   }
 
+  ionViewDidEnter() {
+    this.avatar = this.authService.getAvatar();
+  }
+
+  /* Abre el escaner QR para sumar los días */
   abreQR() {
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
@@ -137,10 +143,12 @@ export class AppComponent {
 
   }
 
+  /* Añade días a al usuario logeado cuando escanea el QR correcto*/
   sumaDias() {
 
+    this.flashlight.switchOn();
+
     let datosSesion = this.authService.getDatosSesion();
-    let id = this.authService.getId();
 
     let data = {
       avatar: datosSesion.avatar,
@@ -149,11 +157,13 @@ export class AppComponent {
       usuario: datosSesion.usuario,
     };
 
-    this.authService.actualizarUsuario(id, data).then((d) => {
+    this.authService.actualizarUsuario(data).then((d) => {
       this.diasEscaneados = this.authService.getDias()
       this.descuentoEscaneados = parseInt(this.diasEscaneados) * 10 / 100;
       this.toast.mostrarToast("¡Día sumado!", 100);
     });
+
+    this.flashlight.switchOff();
   }
 
   //Translate
@@ -168,6 +178,7 @@ export class AppComponent {
     }
   }
 
+  /* Muestra el modal para el inicio de sesión */
   async mostrarModalLogin() {
 
     const modal = await this.modalController.create({
@@ -184,6 +195,17 @@ export class AppComponent {
     return await modal.present();
   }
 
+  /* Muestra el modal para el Ranking */
+  async mostrarModalRanking() {
+
+    const modal = await this.modalController.create({
+      component: ModalRankingComponent
+    });
+
+    return await modal.present();
+  }
+
+  /* Muestra el popover para cerrar la sesión */
   async mostrarPopoverLogout() {
     const popover = await this.popoverController.create({
       component: PopoverLogoutComponent,
@@ -197,19 +219,46 @@ export class AppComponent {
     return await popover.present();
   }
 
-  async mostrar() {
-    const popover = await this.popoverController.create({
-      component: PopoverFotoComponent,
-      translucent: true
-    });
-    return await popover.present();
-  }
+  /* ABRIR MODAL, ON INIT TOMAR FOTO, CUANDO CIERRE MODAL, ADIÓS LOADING Y CARGAR FOTO */
 
+  // async mostrarActualizarFoto() {
+  //   const popover = await this.popoverController.create({
+  //     component: PopoverFotoComponent,
+  //     translucent: true
+  //   });
+  //   popover.onDidDismiss().then(() => {
+
+  //     this.avatar = this.authService.getAvatar();
+
+  //   });
+  //   return await popover.present();
+  // }
+
+  /* Cerrar la sesión */
   logOut() {
     this.authService.logOut();
   }
 
+  /* Comprueba si estás logeado */
   isLogged() {
     return this.authService.isLogged();
+  }
+
+  //Loading
+  async presentLoading(msg) {
+
+    let myloading = await this.loadingController.create({
+      message: msg
+    });
+
+    return await myloading.present();
+  }
+
+  finishLoading() {
+    this.loadingController.dismiss();
+  }
+
+  cerrarModal() {
+    this.modalController.dismiss();
   }
 }

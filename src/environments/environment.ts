@@ -19,7 +19,7 @@ export const environment = {
   }, 
 
   defaultLanguage:"es", 
-  currentLanguages:['es','en'], //idiomas disponibles de la aplicación
+  currentLanguages:['es','en'], 
   defaultAvatar:"assets/defaultProfile.jpg"
 };
 

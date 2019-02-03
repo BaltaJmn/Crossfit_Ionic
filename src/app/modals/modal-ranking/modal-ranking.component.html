@@ -1,0 +1,77 @@
+<ion-header no-border color="primary">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="ios-arrow-back" (click)="cerrarModal()"></ion-icon>
+      <span style="font-weight:normal; text-align:center">RANKING DE FUERTESITOS</span>
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-card color="primary">
+
+    <ion-row>
+
+      <ion-col size="4" style="text-align: center">
+        <img src="../../../assets/imgs/izq.png">
+      </ion-col>
+
+      <ion-col size="4" style="text-align: center">
+        <ion-row>
+          <ion-avatar>
+            <ion-img
+              src="{{top1Avatar}}" style="width:110px;height: 110px"></ion-img>
+          </ion-avatar>
+        </ion-row>
+        <ion-row>
+          <span style="text-align: center; margin-top: 20px; margin-left: 35%">{{top1Usuario}}</span>
+        </ion-row>
+
+      </ion-col>
+
+      <ion-col size="4" style="text-align: center">
+        <img src="../../../assets/imgs/der.png">
+      </ion-col>
+
+      <ion-col size="12">
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-card>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col float-left>
+      <ion-searchbar #searchBar id="searchBar" showCancelButton
+        cancelButtonText="Cancelar" placeholder="Buscar"
+        (ionInput)="getItems($event)" (ionClear)="cleared()"
+        (ionCancel)="onCancel()"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+
+  <ion-refresher (ionRefresh)="updateRanking($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Arrastra para refrescar"
+      refreshingSpinner="crescent"
+      refreshingText="Cargando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list #dynamicList id="dynamicList">
+    <ion-item-sliding *ngFor="let item of listadoHTML;let i= index">
+      <ion-item>
+        <ion-avatar slot="end">
+          <ion-img [src]="item.avatar"></ion-img>
+        </ion-avatar>
+
+        <ion-label slot="start">
+          <h3>#{{(i+1)}}
+            {{item.usuario}}</h3>
+          <h4>{{item.dias}} Días</h4>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

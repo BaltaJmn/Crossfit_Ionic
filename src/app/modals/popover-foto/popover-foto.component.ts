@@ -1,3 +1,4 @@
+import { AuthService } from './../../servicios/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ToastController } from '@ionic/angular';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
@@ -16,7 +17,8 @@ export class PopoverFotoComponent implements OnInit {
   constructor(
     private popoverController: PopoverController,
     private deviceMotion: DeviceMotion,
-    private toast: ToastController
+    private toast: ToastController,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -32,13 +34,13 @@ export class PopoverFotoComponent implements OnInit {
     //   this.toast.create(acceleration);
     // });
 
-    
+
   }
 
   aceptar() {
-    // Stop watch
-    this.subscription.unsubscribe();
-    this.popoverController.dismiss()
+    this.authService.actualizarFoto().then(() => {
+      this.popoverController.dismiss()
+    });
   }
 
   cancelar() {

@@ -4,6 +4,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage'
 import { ToastModule } from '../componentes/toast/toast.module';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,16 @@ export class AuthService {
   usuariosColeccion: any;
   datosSesion: DatosSesion = {};
 
+  /*Variables para el infiniteScroll de la pestaña ranking*/
+  rlastUserLoaded = null;
+  rlastlastUserLoaded = null;
+  rscrollUserEnabled = true;
+
   constructor(
     private fireStore: AngularFirestore,
     private storage: Storage,
-    private toast: ToastModule
+    private toast: ToastModule,
+    private camera: Camera
   ) {
 
     this.usuariosColeccion = fireStore.collection<any>(environment.firebaseConfig.usuariosColeccion);
@@ -30,6 +37,7 @@ export class AuthService {
     this.datosSesion.avatar = environment.defaultAvatar;
   }
 
+  /* Comprueba que hay datos de sesiones anteriores guardados en la memoria del teléfono y los carga */
   initChecking() {
     return new Promise((resolve, reject) => {
       this.storage.get('datosSesion').then((val: DatosSesion) => {
@@ -46,15 +54,18 @@ export class AuthService {
     });
   }
 
+  /* Crea un usuario en la base de datos */
   crearUsuario(datos) {
     return this.usuariosColeccion.add(datos);
   }
 
+  /* Compruba que existe un usuario comprobando el usuario y la contraseña */
   recuperarUsuarioID(usuario, contraseña) {
     return this.usuariosColeccion.ref.where("usuario", "==", usuario).where("contraseña", "==", contraseña).get();
   }
 
-  actualizarUsuario(id, data) {
+  /* Actualiza los datos de un usuario */
+  actualizarUsuario(data) {
     return new Promise((resolve, reject) => {
 
       this.datosSesion.dias = data.dias;
@@ -69,6 +80,35 @@ export class AuthService {
     });
   }
 
+  /* Realiza una consulta a la base de datos devolviendo un array de usuario ordenador por los días registrados */
+  getRanking(): Promise<DatosSesion[]> {
+
+    console.log(this.datosSesion.usuario);
+
+    return new Promise((resolve, reject) => {
+
+      let lreq: DatosSesion[] = [];
+      let query;
+
+      query = this.usuariosColeccion.ref.orderBy("dias", "desc").get()
+
+      query.then((d) => {
+
+        d.forEach((u) => {
+          let x = { "id": u.id, ...u.data() };
+          lreq.push(x);
+        });
+
+        resolve(lreq);
+      });
+    });
+  }
+
+  /* Método para el infinity Scroll */
+  isRInfinityScrollEnabled() {
+    return this.rscrollUserEnabled;
+  }
+
   //Inicio y Cierre de Sesión
   iniciarSesion(datosUsuario, id) {
 
@@ -80,12 +120,7 @@ export class AuthService {
 
     this.datosSesion.dias = datosUsuario.dias;
 
-    this.storage.set('datosSesion', this.datosSesion)
-      .then(() => {
-        this.toast.mostrarToast("Guardados bien", 100);
-      }).catch(err => {
-        this.toast.mostrarToast("No se han guardado", 100);
-      });
+    this.storage.set('datosSesion', this.datosSesion);
   }
 
   logOut() {
@@ -110,6 +145,43 @@ export class AuthService {
 
   isLogged(): Boolean {
     return this.datosSesion.logged;
+  }
+
+  /* Método para actualizar la foto de un usuario (Necesita mejoras en el loading) */
+  actualizarFoto() {
+    return new Promise((resolve, reject) => {
+
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,  /*FILE_URI */
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        cameraDirection: 0,
+        correctOrientation: true,
+        saveToPhotoAlbum: true,
+        targetWidth: 200
+      };
+
+      let data = {
+        usuario: this.datosSesion.usuario,
+        contraseña: this.datosSesion.contraseña,
+        avatar: this.datosSesion.avatar,
+        dias: this.datosSesion.dias,
+      };
+
+      this.camera.getPicture(options)
+        .then((imageData) => {
+          let base64Image = 'data:image/jpeg;base64, ' + imageData;
+          data.avatar = base64Image;
+
+          this.usuariosColeccion.ref.where("usuario", "==", data.usuario).get()
+            .then((d) => {
+              this.usuariosColeccion.doc(d.docs[0].id).update(data).then(() => {
+                resolve();
+              });
+            });
+        });
+    });
   }
 
 

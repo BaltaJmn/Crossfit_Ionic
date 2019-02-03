@@ -16,7 +16,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 import { SemanaservicioService } from './servicios/semanaservicio.service';
-environment
 import { IonicStorageModule } from '@ionic/storage';
 import { ToastModule } from './componentes/toast/toast.module';
 
@@ -34,14 +33,15 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 import { TranslateModule, TranslateLoader, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ModalRankingComponent } from './modals/modal-ranking/modal-ranking.component';
 export function setTranslateLoader(http: any) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 
 @NgModule({
-  declarations: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent],
-  entryComponents: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent],
+  declarations: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent, ModalRankingComponent],
+  entryComponents: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent, ModalRankingComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

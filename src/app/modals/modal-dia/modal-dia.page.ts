@@ -70,6 +70,7 @@ export class ModalDiaPage implements OnInit {
     this.diaEntreno = this.navParams.get("id");
   }
 
+  /* Pone el título al modal y carga los entrenamientos según el segment en el que esté */
   ngOnInit() {
 
     this.titulo = this.days[this.id - 1];
@@ -79,26 +80,27 @@ export class ModalDiaPage implements OnInit {
 
     this.metodoPrincipal();
 
-    this.SwipedTabsSlider.length().then(l => {  //no sería necesario aquí, solo en ngOnInit
+    this.SwipedTabsSlider.length().then(l => {
       this.ntabs = l;
     });
 
   }
 
+  /* Iguala la categía a 0*/
   ionViewWillEnter() {
     this.category = "0";
-    this.SwipedTabsSlider.length().then(l => {  //no sería necesario aquí, solo en ngOnInit
+    this.SwipedTabsSlider.length().then(l => {
       this.ntabs = l;
     });
   }
 
+  /* Recoge el ID del tabs en el que se encuentra */
   ionViewDidEnter() {
     this.SwipedTabsIndicator = document.getElementById("indicator");
   }
 
 
-  //Mostrar contenido desde la base de datos
-
+  /* Muestra los entrenamientos dependiendo de la categoría y del día en el que estemos */
   mostrarEntrenamientos(dia, categoria) {
 
     this.presentLoading("Cargando");
@@ -124,6 +126,7 @@ export class ModalDiaPage implements OnInit {
 
   }
 
+  /* Método principal que llama al resto de métodos para cargarlo todo */
   metodoPrincipal() {
 
     this.SwipedTabsSlider.getActiveIndex().then(i => {
@@ -137,15 +140,17 @@ export class ModalDiaPage implements OnInit {
 
   }
 
+  /* Convierte el id del tab actual en una categoria */
   conversorCategoria(indice) {
     this.actual = this.categoria[indice];
     return this.actual;
   }
 
+  /* Muestra el modal para editar */
   async mostrarModalEditar() {
     const modal = await this.modalController.create({
       component: ModalEditarPage,
-      componentProps: { id: this.idEntreno , dia: this.diaEntreno, categoria: this.catEntreno, ej1: this.ej1, ej2: this.ej2, ej3: this.ej3, ej4: this.ej4}
+      componentProps: { id: this.idEntreno, dia: this.diaEntreno, categoria: this.catEntreno, ej1: this.ej1, ej2: this.ej2, ej3: this.ej3, ej4: this.ej4 }
     });
     modal.onDidDismiss()
       .then(() => {
@@ -183,7 +188,6 @@ export class ModalDiaPage implements OnInit {
 
   /* El método que anima la "rayita" mientras nos estamos deslizando por el slide*/
   animateIndicator(e) {
-    //console.log(e.target.swiper.progress);
     if (this.SwipedTabsIndicator)
       this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' +
         ((e.target.swiper.progress * (this.ntabs - 1)) * 100) + '%,0,0)';
@@ -191,7 +195,6 @@ export class ModalDiaPage implements OnInit {
 
 
   //Loading
-
   async presentLoading(msg) {
 
     let myloading = await this.loadingController.create({
@@ -203,27 +206,6 @@ export class ModalDiaPage implements OnInit {
 
   cerrarModal() {
     this.modalController.dismiss();
-  }
-
-  //!!MEJORAR
-  //SEARCH BAR
-
-  initializeItems() {
-    this.listaEntrenoPanel = this.listaEntreno;
-  }
-
-  getItems(ev: any) {
-    this.initializeItems();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.listaEntrenoPanel = this.listaEntreno.filter((item) => {
-        return (item.ej1.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
   }
 
   //Logged

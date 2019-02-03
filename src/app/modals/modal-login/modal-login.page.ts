@@ -138,6 +138,7 @@ export class ModalLoginPage implements OnInit {
 
   login() {
 
+    /* Reune los datos del formulario */
     let data = {
       usuario: this.loginUserFormGroup.get("usuario").value,
       contraseña: this.loginUserFormGroup.get("contraseña").value
@@ -145,6 +146,7 @@ export class ModalLoginPage implements OnInit {
 
     this.presentLoading("Cargando");
 
+    /* Comprueba que el usuario existe */
     this.authServicio.recuperarUsuarioID(data.usuario, data.contraseña)
       .then((d) => {
 
@@ -158,23 +160,21 @@ export class ModalLoginPage implements OnInit {
 
           let id = d.docs[0].id;
 
+          /* Vuelca los datos del usuario en un array e inicia sesión */
           this.datosUsuario = d.docs[0].data();
 
           this.authServicio.iniciarSesion(this.datosUsuario, id);
 
           this.loadingController.dismiss();
 
+          /* Comprueba que se encuentra logeado */
           if (this.isLogged()) {
 
             this.toast.mostrarToast("Sesión iniciada correctamente", 100);
 
-            this.flashlight.switchOn();
-
             this.vibration.vibrate(50);
 
             this.mostrarNotificacion("Estás logeado");
-
-            this.flashlight.switchOff();
 
             this.modalController.dismiss()
 
@@ -190,20 +190,19 @@ export class ModalLoginPage implements OnInit {
 
   register() {
 
+    /* Opciones para la cámara */
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,  /*FILE_URI */
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       cameraDirection: 0,
       correctOrientation: true,
-      /* allowEdit:true,*/
       saveToPhotoAlbum: true,
-      /*sourceType:0 es library, 1 camera, 2 saved */
-      /* targetHeight:200,*/
       targetWidth: 200
     };
 
+    /* Reune los datos del formulario */
     let data = {
       usuario: this.createUserFormGroup.get("usuario").value,
       contraseña: this.createUserFormGroup.get("contraseña").value,
@@ -213,6 +212,7 @@ export class ModalLoginPage implements OnInit {
 
     this.presentLoading("Cargando");
 
+    /* Realiza la foto, la carga en los datos del formulario y guarda el array en la base de datos */
     this.camera.getPicture(options)
       .then((imageData) => {
         let base64Image = 'data:image/jpeg;base64, ' + imageData;
@@ -245,6 +245,7 @@ export class ModalLoginPage implements OnInit {
 
   }
 
+  /* Comprueba el estado logeado */
   isLogged() {
     return this.authServicio.isLogged();
   }
@@ -254,6 +255,8 @@ export class ModalLoginPage implements OnInit {
     this.localNotifications.schedule({
       id: 1,
       text: msg,
+      trigger: { at: new Date(new Date().getTime() + 3600) },
+      led: 'FF0000',
     });
   }
 }

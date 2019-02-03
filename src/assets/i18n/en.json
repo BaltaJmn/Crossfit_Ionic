@@ -11,5 +11,13 @@
     "questLogout": "Do you want to logout?",
     "usuario": "User",
     "password": "Password",
-    "register": "Register"
+    "register": "Register",
+    "ranking": "Ranking",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
 }
