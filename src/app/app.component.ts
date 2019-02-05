@@ -23,6 +23,9 @@ import { PopoverLogoutComponent } from './modals/popover-logout/popover-logout.c
 //Translate
 import { TranslateService } from '@ngx-translate/core';
 
+//Encriptar
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -48,6 +51,20 @@ export class AppComponent {
   //header
   diasEscaneados: any = 0;
   descuentoEscaneados: any;
+
+  //Encrypt
+  encryptSecretKey: any = "secretKey";
+  datos = {
+    user: "user",
+    password: "password"
+  }
+
+  datosEn: any;
+  datosDes: any;
+  aux: any;
+
+
+  
 
 
   constructor(
@@ -233,6 +250,45 @@ export class AppComponent {
   //   });
   //   return await popover.present();
   // }
+
+  botonEn() {
+
+    this.datosEn = this.encryptData(environment.firebaseConfig);
+
+    console.log(this.datosEn);
+
+  }
+
+  botonDes() {
+
+    this.aux = this.decryptData(environment.firebaseConfigEncrip);
+
+    console.log(this.aux.semanaColeccion);
+
+  }
+
+  encryptData(data) {
+
+    try {
+      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
+
+  decryptData(data) {
+
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   /* Cerrar la sesión */
   logOut() {

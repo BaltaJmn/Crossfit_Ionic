@@ -1,3 +1,4 @@
+import { EncryptServiceService } from './encrypt-service.service';
 import { DatosSesion } from './../interfaces/datos-sesion';
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -19,14 +20,19 @@ export class AuthService {
   rlastlastUserLoaded = null;
   rscrollUserEnabled = true;
 
+  firebaseDes: any;
+
   constructor(
     private fireStore: AngularFirestore,
     private storage: Storage,
     private toast: ToastModule,
-    private camera: Camera
+    private camera: Camera,
+    private encrypter: EncryptServiceService
   ) {
 
-    this.usuariosColeccion = fireStore.collection<any>(environment.firebaseConfig.usuariosColeccion);
+    this.firebaseDes = this.encrypter.decryptData(environment.firebaseConfigEncrip);
+
+    this.usuariosColeccion = fireStore.collection<any>(this.firebaseDes.usuariosColeccion);
 
     this.datosSesion.logged = false;
     this.datosSesion.id = "";

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger" >
 
     <ion-row>
       <ion-col float-left>
@@ -12,9 +12,7 @@
 
   </ion-toolbar>
 
-  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"
-    style="background-color:var(--ion-color-primary)"
-    color="light">
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)" color="danger">
 
     <ion-segment-button layout="icon-start" value="0">
       <ion-icon name="flame" style="margin-right:1px;zoom:0.8"></ion-icon>

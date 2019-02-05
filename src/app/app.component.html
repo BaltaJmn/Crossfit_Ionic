@@ -2,7 +2,7 @@
   <ion-split-pane>
     <ion-menu>
       <ion-header>
-        <ion-toolbar>
+        <ion-toolbar color="danger">
           <ion-title style="text-align: center; margin-bottom: 10px; margin-top:
             10px;">Menu</ion-title>
           <ion-avatar style="text-align: center;margin:auto;cursor: pointer;">
@@ -28,7 +28,7 @@
         <ion-item>
           <ion-icon slot="start" name="flag"></ion-icon>
           <ion-label>{{"changeLang" | translate}}</ion-label>
-          <ion-toggle slot="end" (ionChange)="changeLang($event)"></ion-toggle>
+          <ion-toggle  color="danger" slot="end" (ionChange)="changeLang($event)"></ion-toggle>
         </ion-item>
 
         <ion-item (click)="abreQR()" *ngIf="isLogged()">
@@ -41,18 +41,26 @@
           <ion-label>{{"ranking" | translate}}</ion-label>
         </ion-item>
 
+        <ion-button (click)="botonEn()">
+          <ion-label>en</ion-label>
+        </ion-button>
+
+        <ion-button (click)="botonDes()">
+          <ion-label>des</ion-label>
+        </ion-button>
+
       </ion-content>
 
       <ion-footer>
         <ion-item>
           <ion-label>
 
-            <ion-button *ngIf="!isLogged()" (click)="mostrarModalLogin()">
+            <ion-button  color="danger" *ngIf="!isLogged()" (click)="mostrarModalLogin()">
               <ion-icon slot="start" name="log-in"></ion-icon>
               <span>{{"login" | translate}}</span>
             </ion-button>
 
-            <ion-button *ngIf="isLogged()" (click)="mostrarPopoverLogout()">
+            <ion-button  color="danger" *ngIf="isLogged()" (click)="mostrarPopoverLogout()">
               <ion-icon slot="end" name="log-out"></ion-icon>
               <span>{{"logout" | translate}}</span>
             </ion-button>

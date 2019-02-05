@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 import { firestore } from 'firebase';
+import { EncryptServiceService } from './encrypt-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,18 @@ export class SemanaservicioService {
   entrenamientosCollection: any;
   categoriasCollection: any;
 
-  constructor(private fireStore: AngularFirestore) {
+  firebaseDes: any;
 
-    this.semanaCollection = fireStore.collection<any>(environment.firebaseConfig.semanaColeccion);
-    this.entrenamientosCollection = fireStore.collection<any>(environment.firebaseConfig.entrenamientosColeccion);
-    this.categoriasCollection = fireStore.collection<any>(environment.firebaseConfig.categoriasColeccion);
+  constructor(
+    private fireStore: AngularFirestore,
+    private encrypter: EncryptServiceService
+  ) {
+
+    this.firebaseDes = this.encrypter.decryptData(environment.firebaseConfigEncrip);
+
+    this.semanaCollection = fireStore.collection<any>(this.firebaseDes.semanaColeccion);
+    this.entrenamientosCollection = fireStore.collection<any>(this.firebaseDes.entrenamientosColeccion);
+    this.categoriasCollection = fireStore.collection<any>(this.firebaseDes.categoriasColeccion);
 
   }
 

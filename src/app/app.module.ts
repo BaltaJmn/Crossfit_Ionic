@@ -29,11 +29,15 @@ import { PopoverLogoutComponent } from './modals/popover-logout/popover-logout.c
 import { PopoverFotoComponent } from './modals/popover-foto/popover-foto.component';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
 
+//Encrypt
+import { EncryptServiceService } from './servicios/encrypt-service.service';
+
 /*Importamos los módulos y funciones necesarias para la traducción */
 import { TranslateModule, TranslateLoader, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalRankingComponent } from './modals/modal-ranking/modal-ranking.component';
+
 export function setTranslateLoader(http: any) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
