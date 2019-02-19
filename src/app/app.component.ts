@@ -238,18 +238,18 @@ export class AppComponent {
 
   /* ABRIR MODAL, ON INIT TOMAR FOTO, CUANDO CIERRE MODAL, ADIÓS LOADING Y CARGAR FOTO */
 
-  // async mostrarActualizarFoto() {
-  //   const popover = await this.popoverController.create({
-  //     component: PopoverFotoComponent,
-  //     translucent: true
-  //   });
-  //   popover.onDidDismiss().then(() => {
+  async mostrarActualizarFoto() {
+    const popover = await this.popoverController.create({
+      component: PopoverFotoComponent,
+      translucent: true
+    });
+    popover.onDidDismiss().then(() => {
 
-  //     this.avatar = this.authService.getAvatar();
+      this.avatar = this.authService.getAvatar();
 
-  //   });
-  //   return await popover.present();
-  // }
+    });
+    return await popover.present();
+  }
 
   botonEn() {
 

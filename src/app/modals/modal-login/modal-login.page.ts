@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ToastModule } from 'src/app/componentes/toast/toast.module';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { EncryptServiceService } from 'src/app/servicios/encrypt-service.service';
 
 @Component({
   selector: 'app-modal-login',
@@ -50,6 +51,7 @@ export class ModalLoginPage implements OnInit {
     public localNotifications: LocalNotifications,
     public flashlight: Flashlight,
     public camera: Camera,
+    public encryptService: EncryptServiceService,
   ) {
 
     this.createUserFormGroup = this.formBuilder.group({
@@ -141,7 +143,7 @@ export class ModalLoginPage implements OnInit {
     /* Reune los datos del formulario */
     let data = {
       usuario: this.loginUserFormGroup.get("usuario").value,
-      contraseña: this.loginUserFormGroup.get("contraseña").value
+      contraseña: this.loginUserFormGroup.get("contraseña").value,
     };
 
     this.presentLoading("Cargando");
@@ -162,6 +164,8 @@ export class ModalLoginPage implements OnInit {
 
           /* Vuelca los datos del usuario en un array e inicia sesión */
           this.datosUsuario = d.docs[0].data();
+
+          console.log(this.datosUsuario);
 
           this.authServicio.iniciarSesion(this.datosUsuario, id);
 

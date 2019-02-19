@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="danger" >
+  <ion-toolbar color="danger">
 
     <ion-row>
       <ion-col float-left>
@@ -12,7 +12,8 @@
 
   </ion-toolbar>
 
-  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)" color="danger">
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"
+    color="danger">
 
     <ion-segment-button layout="icon-start" value="0">
       <ion-icon name="flame" style="margin-right:1px;zoom:0.8"></ion-icon>
@@ -121,9 +122,11 @@
 
   </ion-slides>
 
-  <ion-fab style="margin-bottom:50px;">
-    <ion-fab-button *ngIf="isLogged()" (click)="mostrarModalEditar()"><ion-icon
-        slot="end" name="create"></ion-icon></ion-fab-button>
-  </ion-fab>
-
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button style="margin-right: 20px;
+    margin-bottom: 20px" *ngIf="isLogged()" (click)="mostrarModalEditar()">
+    <div><ion-icon slot="end" name="create"></ion-icon></div>
+  </ion-fab-button>
+</ion-fab>

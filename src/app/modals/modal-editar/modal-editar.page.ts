@@ -45,10 +45,10 @@ export class ModalEditarPage implements OnInit {
       ej3: [this.ej3, Validators.required],
       ej4: [this.ej4, Validators.required]
     })
-
   }
 
   ngOnInit() {
+
   }
 
   /* Reune los datos del formulario y los carga en la base de datos */
