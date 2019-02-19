@@ -1,3 +1,4 @@
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalLoginPage } from './modals/modal-login/modal-login.page';
 import { NgModule } from '@angular/core';
@@ -74,6 +75,7 @@ export function setTranslateLoader(http: any) {
     Camera,
     DeviceMotion,
     QRScanner,
+    DatePicker,
   ],
   bootstrap: [AppComponent]
 })

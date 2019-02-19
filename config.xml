@@ -88,5 +88,6 @@
     <plugin name="cordova-plugin-device-motion" spec="2.0.1" />
     <plugin name="cordova-plugin-qrscanner" spec="2.6.0" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-datepicker" spec="0.9.3" />
     <engine name="android" spec="7.1.4" />
 </widget>

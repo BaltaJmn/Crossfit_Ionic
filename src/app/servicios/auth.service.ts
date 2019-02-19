@@ -180,6 +180,8 @@ export class AuthService {
           let base64Image = 'data:image/jpeg;base64, ' + imageData;
           data.avatar = base64Image;
 
+          this.setAvatar(data.avatar);
+
           this.usuariosColeccion.ref.where("usuario", "==", data.usuario).get()
             .then((d) => {
               this.usuariosColeccion.doc(d.docs[0].id).update(data).then(() => {
@@ -219,6 +221,11 @@ export class AuthService {
 
   getAvatar(): String {
     return this.datosSesion.avatar;
+  }
+  
+  setAvatar(val){
+    this.datosSesion.avatar = val;
+    return this.storage.set('datosSesion', this.datosSesion);
   }
 
   getDias() {

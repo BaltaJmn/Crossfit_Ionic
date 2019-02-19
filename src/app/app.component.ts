@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 //Native
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 //Popover
 import { PopoverController } from '@ionic/angular';
@@ -25,6 +26,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 //Encriptar
 import * as CryptoJS from 'crypto-js';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-root',
@@ -64,7 +66,7 @@ export class AppComponent {
   aux: any;
 
 
-  
+
 
 
   constructor(
@@ -82,6 +84,8 @@ export class AppComponent {
     private popoverController: PopoverController,
     private flashlight: Flashlight,
     private translate: TranslateService,
+    private datePicker: DatePicker,
+    private localNotifications: LocalNotifications,
   ) {
     this.logged = false;
     this.initializeApp();
@@ -120,6 +124,45 @@ export class AppComponent {
     this.avatar = this.authService.getAvatar();
   }
 
+  //Recordatorio
+  // recordatorio() {
+  //   this.datePicker.show({
+  //     titleText: "Añade un recordatorio",
+  //     date: new Date(),
+  //     mode: 'time',
+  //     androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+  //   })
+  //     .then((d) => {
+  //       let fecha = d.toString();
+  //       let hora = fecha.substring(16, 18);
+  //       let minuto = fecha.substring(19, 21);
+  //       let segundo = fecha.substring(22, 24);
+
+  //       this.calculadoraHora(hora, minuto, segundo);
+        
+  //       console.log(fecha);
+  //       console.log(hora);
+  //       console.log(minuto);
+  //       console.log(segundo);
+  //     });
+  // }
+
+  // calculadoraHora(hora, minuto, segundo) {
+
+  //   let total = hora * 3600000 + minuto * 60000 + segundo * 1000;
+
+  //   console.log(total);
+  //   console.log(new Date(new Date().getTime() + total));
+
+  //   this.localNotifications.schedule({
+  //     id: 1,
+  //     text: "¡A entrenar!",
+  //     trigger: { at: new Date(new Date().getTime() + 10000) },
+  //     led: 'FF0000',
+  //   });
+
+  // }
+
   /* Abre el escaner QR para sumar los días */
   abreQR() {
     this.qrScanner.prepare()
@@ -129,12 +172,12 @@ export class AppComponent {
           this.qrScanner.show();  //Mostramos cámara
           window.document.querySelector('ion-app').classList.add('cameraView');  //ocultamos vista de la app
 
-          this.flashlight.switchOn();
-
           this.scanSub = this.qrScanner.scan().subscribe((d) => {
 
             if (d == "suma") {
+              this.flashlight.switchOn();
               this.sumaDias();
+              this.flashlight.switchOff();
             } else {
               this.toast.mostrarToast("Código incorrecto", 100);
             }
@@ -145,7 +188,7 @@ export class AppComponent {
             this.qrScanner.destroy();
           });
         } else if (status.denied) {
-          /* No hay permisos, abrimos configuración de permisos*/
+          /* No hay permisos, abrimos configuración de permisos */
           this.toast.mostrarToast("error", 100);
           console.log("denied");
           this.qrScanner.openSettings();
@@ -160,10 +203,31 @@ export class AppComponent {
 
   }
 
-  /* Añade días a al usuario logeado cuando escanea el QR correcto*/
-  sumaDias() {
+  /* Cierra el QR */
+  ngOnDestroy() {
+    window.document.querySelector('ion-app').classList.remove('cameraView');
+    this.qrScanner.hide().then(() => {
+      this.qrScanner.destroy();
+    }); // hide camera preview
+  }
 
-    this.flashlight.switchOn();
+  pauseQR() {
+    this.qrScanner.hide();
+    this.qrScanner.pausePreview();
+    window.document.querySelector('ion-app').classList.remove('cameraView');
+  }
+
+  closeQR() {
+    window.document.querySelector('ion-app').classList.remove('cameraView');
+    this.qrScanner.hide().then(() => {
+      this.qrScanner.destroy();
+    });
+    this.scanSub.unsubscribe(); // stop scanning
+  }
+
+
+  /* Añade días a al usuario logeado cuando escanea el QR correcto */
+  sumaDias() {
 
     let datosSesion = this.authService.getDatosSesion();
 
@@ -179,8 +243,6 @@ export class AppComponent {
       this.descuentoEscaneados = parseInt(this.diasEscaneados) * 10 / 100;
       this.toast.mostrarToast("¡Día sumado!", 100);
     });
-
-    this.flashlight.switchOff();
   }
 
   //Translate
@@ -246,25 +308,10 @@ export class AppComponent {
     popover.onDidDismiss().then(() => {
 
       this.avatar = this.authService.getAvatar();
+      this.toast.mostrarToast("Foto de perfil actualizada", 100);
 
     });
     return await popover.present();
-  }
-
-  botonEn() {
-
-    this.datosEn = this.encryptData(environment.firebaseConfig);
-
-    console.log(this.datosEn);
-
-  }
-
-  botonDes() {
-
-    this.aux = this.decryptData(environment.firebaseConfigEncrip);
-
-    console.log(this.aux.semanaColeccion);
-
   }
 
   encryptData(data) {

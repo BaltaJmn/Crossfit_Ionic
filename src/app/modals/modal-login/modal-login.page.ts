@@ -243,8 +243,16 @@ export class ModalLoginPage implements OnInit {
 
           });
 
+      })
+      .catch((error) => {
+
+        this.toast.mostrarToast("Se ha salido de la cámara", 100);
+
+        this.loadingController.dismiss();
 
       });
+
+
 
 
   }
