@@ -26,7 +26,10 @@ export class ModalRankingComponent implements OnInit {
     this.updateRanking(null);
   }
 
-  /* Se encarga de realizar una consulta a la base de datos ordenando los usuario por los días registrados */
+  /**
+   * Se encarga de realizar una consulta a la base de datos ordenando los usuario por los días registrados
+   * @param event Evento de deslizar el dedo
+   */
   updateRanking(event?) {
 
     this.listadoRanking = [];
@@ -52,10 +55,17 @@ export class ModalRankingComponent implements OnInit {
 
   //SEARCH BAR
 
+  /**
+   * Carga los datos y los vuelca en un array
+   */
   initializeItems() {
     this.listadoHTML = this.listadoRanking;
   }
 
+  /**
+   * Va buscando entre los objetos que coincidan con lo introducido por parámetro
+   * @param ev Escritura en el formulario
+   */
   getItems(ev: any) {
     this.initializeItems();
     // set val to the value of the searchbar

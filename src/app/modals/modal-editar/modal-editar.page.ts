@@ -51,7 +51,9 @@ export class ModalEditarPage implements OnInit {
 
   }
 
-  /* Reune los datos del formulario y los carga en la base de datos */
+  /**
+   * Reune los datos del formulario y los carga en la base de datos
+   */
   edit() {
     let data = {
       categoria: this.categoria,
@@ -68,6 +70,10 @@ export class ModalEditarPage implements OnInit {
 
   //Loading
 
+  /**
+   * Presenta el loading en la pantalla
+   * @param msg El texto del mensaje
+   */
   async presentLoading(msg) {
 
     let myloading = await this.loadingController.create({
@@ -77,10 +83,16 @@ export class ModalEditarPage implements OnInit {
     return await myloading.present();
   }
 
+  /**
+   * Finaliza el loading
+   */
   finishLoading() {
     this.loadingController.dismiss();
   }
 
+  /**
+   * Cierra el modal
+   */
   cerrarModal() {
     this.modalController.dismiss();
   }

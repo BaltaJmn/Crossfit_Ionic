@@ -28,27 +28,41 @@ export class SemanaservicioService {
 
   }
 
-  /* Consulta que devuelve la colección de días de la semana */
+  /**
+   * Consulta que devuelve la colección de días de la semana
+   */
   leeSemana() {
     return this.semanaCollection.get();
   }
 
-  /* Consulta que devuelve la colección de entrenamientos */
+  /**
+   * Consulta que devuelve la colección de entrenamientos
+   */
   leeEntrenamientos() {
     return this.entrenamientosCollection.get();
   }
 
-  /* Consulta que actualiza la colección de entrenamientos */
+  /**
+   * Consulta que actualiza la colección de entrenamientos
+   * @param id ID del entrenamiento
+   * @param data Datos del entrenamiento
+   */
   actualizaEntrenamiento(id, data) {
     return this.entrenamientosCollection.doc(id).set(data);
   }
 
-  /* Consulta que devuelve la colección de categorías */
+  /**
+   * Consulta que devuelve la colección de categorías
+   */
   leeCategoria() {
     return this.categoriasCollection.get();
   }
 
-  /* Consulta que devuelve la colección de entrenamientos de un día y una categoría en concreto */
+  /**
+   * Consulta que devuelve la colección de entrenamientos de un día y una categoría en concreto
+   * @param dia Dia de la consulta
+   * @param categoria Categoria de la consulta
+   */
   getEntrenamientoPorDiaCategoria(dia, categoria) {
     return this.entrenamientosCollection.ref.where("dia", "==", dia).where("categoria", "==", categoria).get();
   }

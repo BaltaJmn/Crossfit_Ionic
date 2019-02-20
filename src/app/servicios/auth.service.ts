@@ -43,7 +43,9 @@ export class AuthService {
     this.datosSesion.avatar = environment.defaultAvatar;
   }
 
-  /* Comprueba que hay datos de sesiones anteriores guardados en la memoria del teléfono y los carga */
+  /**
+   * Comprueba que hay datos de sesiones anteriores guardados en la memoria del teléfono y los carga
+   */
   initChecking() {
     return new Promise((resolve, reject) => {
       this.storage.get('datosSesion').then((val: DatosSesion) => {
@@ -60,17 +62,27 @@ export class AuthService {
     });
   }
 
-  /* Crea un usuario en la base de datos */
+  /**
+   * Crea un usuario en la base de datos
+   * @param datos Datos del usuario
+   */
   crearUsuario(datos) {
     return this.usuariosColeccion.add(datos);
   }
 
-  /* Compruba que existe un usuario comprobando el usuario y la contraseña */
+  /**
+   * Compruba que existe un usuario comprobando el usuario y la contraseña
+   * @param usuario Nombre de usuario
+   * @param contraseña Contraseña de usuario
+   */
   recuperarUsuarioID(usuario, contraseña) {
     return this.usuariosColeccion.ref.where("usuario", "==", usuario).where("contraseña", "==", contraseña).get();
   }
 
-  /* Actualiza los datos de un usuario */
+  /**
+   * Actualiza los datos de un usuario
+   * @param data Array con los datos del usuario
+   */
   actualizarUsuario(data) {
     return new Promise((resolve, reject) => {
 
@@ -86,7 +98,9 @@ export class AuthService {
     });
   }
 
-  /* Realiza una consulta a la base de datos devolviendo un array de usuario ordenador por los días registrados */
+  /**
+   * Realiza una consulta a la base de datos devolviendo un array de usuario ordenador por los días registrados
+   */
   getRanking(): Promise<DatosSesion[]> {
 
     console.log(this.datosSesion.usuario);
@@ -110,12 +124,19 @@ export class AuthService {
     });
   }
 
-  /* Método para el infinity Scroll */
+  /**
+   * Método para el infinity Scroll
+   */
   isRInfinityScrollEnabled() {
     return this.rscrollUserEnabled;
   }
 
   //Inicio y Cierre de Sesión
+  /**
+   * Inicia la sesión de un usuario
+   * @param datosUsuario Datos del usuario para manipularlos
+   * @param id ID del usuario
+   */
   iniciarSesion(datosUsuario, id) {
 
     this.datosSesion = datosUsuario;
@@ -129,6 +150,9 @@ export class AuthService {
     this.storage.set('datosSesion', this.datosSesion);
   }
 
+  /**
+   * Cierra la sesión del usuario
+   */
   logOut() {
 
     return new Promise((resolve, reject) => {
@@ -149,11 +173,16 @@ export class AuthService {
 
   }
 
+  /**
+   * Comprueba si está logeado
+   */
   isLogged(): Boolean {
     return this.datosSesion.logged;
   }
 
-  /* Método para actualizar la foto de un usuario (Necesita mejoras en el loading) */
+  /**
+   * Método para actualizar la foto de un usuario
+   */
   actualizarFoto() {
     return new Promise((resolve, reject) => {
 
@@ -197,42 +226,66 @@ export class AuthService {
 
   //Getters Y Setters
 
+  /**
+   * Obtiene los datos de sesión
+   */
   getDatosSesion() {
     return this.datosSesion;
   }
 
+  /**
+   * Actualiza los datos de sesión
+   * @param datosSesion Datos de sesión del usuario
+   */
   setDatosSesion(datosSesion: DatosSesion) {
     this.datosSesion = datosSesion;
     return this.storage.set('datosSesion', this.datosSesion)
   }
 
+  /**
+   * Obtiene el lenguaje
+   */
   getLang() {
     return this.datosSesion.lang;
   }
 
+  /**
+   * Actualiza el lenguaje
+   * @param val Nuevo lenguaje 
+   */
   setLang(val) {
     this.datosSesion.lang = val;
     return this.storage.set('datosSesion', this.datosSesion);
   }
 
+  /**
+   * Obtiene el id
+   */
   getId() {
     return this.datosSesion.id;
   }
 
+  /**
+   * Obtiene el avatar
+   */
   getAvatar(): String {
     return this.datosSesion.avatar;
   }
   
+  /**
+   * Actualiza el avatar
+   * @param val Nuevo avatar
+   */
   setAvatar(val){
     this.datosSesion.avatar = val;
     return this.storage.set('datosSesion', this.datosSesion);
   }
 
+  /**
+   * Obtiene los días del usuario
+   */
   getDias() {
     return this.datosSesion.dias;
   }
 
-  setDias() {
-    return this.datosSesion.dias;
-  }
 }

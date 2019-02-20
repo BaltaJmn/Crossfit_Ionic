@@ -91,7 +91,9 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  /* Carga los datos almacenados en la memoria del teléfono sobre las sesiones anteriores */
+  /**
+   * Carga los datos almacenados en la memoria del teléfono sobre las sesiones anteriores
+   */
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -120,6 +122,9 @@ export class AppComponent {
     });
   }
 
+  /**
+   * Antes de entrar en la ventana, carga el avatar
+   */
   ionViewDidEnter() {
     this.avatar = this.authService.getAvatar();
   }
@@ -163,7 +168,9 @@ export class AppComponent {
 
   // }
 
-  /* Abre el escaner QR para sumar los días */
+  /**
+   * Abre el escaner QR para sumar los días
+   */
   abreQR() {
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
@@ -203,7 +210,9 @@ export class AppComponent {
 
   }
 
-  /* Cierra el QR */
+  /**
+   * Cierra el QR
+   */
   ngOnDestroy() {
     window.document.querySelector('ion-app').classList.remove('cameraView');
     this.qrScanner.hide().then(() => {
@@ -211,12 +220,18 @@ export class AppComponent {
     }); // hide camera preview
   }
 
+  /**
+   * Pausa el QR
+   */
   pauseQR() {
     this.qrScanner.hide();
     this.qrScanner.pausePreview();
     window.document.querySelector('ion-app').classList.remove('cameraView');
   }
 
+  /**
+   * Cierra el QR
+   */
   closeQR() {
     window.document.querySelector('ion-app').classList.remove('cameraView');
     this.qrScanner.hide().then(() => {
@@ -225,8 +240,9 @@ export class AppComponent {
     this.scanSub.unsubscribe(); // stop scanning
   }
 
-
-  /* Añade días a al usuario logeado cuando escanea el QR correcto */
+  /**
+   * Añade días a al usuario logeado cuando escanea el QR correcto
+   */
   sumaDias() {
 
     let datosSesion = this.authService.getDatosSesion();
@@ -246,6 +262,10 @@ export class AppComponent {
   }
 
   //Translate
+  /**
+   * Cambia el lenguaje a través del toggle
+   * @param e Acción del toggle
+   */
   changeLang(e) {
     //console.log(e.detail.checked);
     if (e.detail.checked) {
@@ -257,7 +277,9 @@ export class AppComponent {
     }
   }
 
-  /* Muestra el modal para el inicio de sesión */
+  /**
+   * Muestra el modal para el inicio de sesión
+   */
   async mostrarModalLogin() {
 
     const modal = await this.modalController.create({
@@ -274,7 +296,9 @@ export class AppComponent {
     return await modal.present();
   }
 
-  /* Muestra el modal para el Ranking */
+  /**
+   * Muestra el modal para el Ranking
+   */
   async mostrarModalRanking() {
 
     const modal = await this.modalController.create({
@@ -284,7 +308,9 @@ export class AppComponent {
     return await modal.present();
   }
 
-  /* Muestra el popover para cerrar la sesión */
+  /**
+   * Muestra el popover para cerrar la sesión
+   */
   async mostrarPopoverLogout() {
     const popover = await this.popoverController.create({
       component: PopoverLogoutComponent,
@@ -298,8 +324,9 @@ export class AppComponent {
     return await popover.present();
   }
 
-  /* ABRIR MODAL, ON INIT TOMAR FOTO, CUANDO CIERRE MODAL, ADIÓS LOADING Y CARGAR FOTO */
-
+  /**
+   * Muestra un popover para preguntar si quieres actualizar la foto de perfil
+   */
   async mostrarActualizarFoto() {
     const popover = await this.popoverController.create({
       component: PopoverFotoComponent,
@@ -314,35 +341,16 @@ export class AppComponent {
     return await popover.present();
   }
 
-  encryptData(data) {
-
-    try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-    } catch (e) {
-      console.log(e);
-    }
-
-  }
-
-  decryptData(data) {
-
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
-      if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  /* Cerrar la sesión */
+  /**
+   * Cierra la sesión del usuario
+   */
   logOut() {
     this.authService.logOut();
   }
 
-  /* Comprueba si estás logeado */
+  /**
+   * Comprueba si está logeado
+   */
   isLogged() {
     return this.authService.isLogged();
   }

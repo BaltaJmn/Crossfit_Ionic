@@ -26,7 +26,9 @@ export class HomePage {
     this.mostrarDias();
   }
 
-  /* Carga los días de la semana desde la base de datos */
+  /**
+   * Carga los días de la semana desde la base de datos
+   */
   mostrarDias() {
 
     this.presentLoading("Cargando");
@@ -42,7 +44,10 @@ export class HomePage {
       });
   }
 
-  /* Muestra el cargar */
+  /**
+   * Muestra el cargar en pantalla
+   * @param msg Muestra el mensaje 
+   */
   async presentLoading(msg) {
 
     let myloading = await this.loadingController.create({
@@ -52,7 +57,10 @@ export class HomePage {
     return await myloading.present();
   }
 
-  /* Abre el modal al clickar en un día de la semana, pasando el ID para identificarlo */
+  /**
+   * Abre el modal al clickar en un día de la semana, pasando el ID para identificarlo
+   * @param id Pasa el id para mostrar ese objeto en pantalla a través del ID
+   */
   async mostrarModal(id) {
 
     const modal = await this.modalController.create({
@@ -62,8 +70,5 @@ export class HomePage {
 
     return await modal.present();
   }
-
-  
-
 
 }

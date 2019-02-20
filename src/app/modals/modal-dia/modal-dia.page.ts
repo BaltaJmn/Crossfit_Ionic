@@ -70,7 +70,9 @@ export class ModalDiaPage implements OnInit {
     this.diaEntreno = this.navParams.get("id");
   }
 
-  /* Pone el título al modal y carga los entrenamientos según el segment en el que esté */
+  /**
+   * Pone el título al modal y carga los entrenamientos según el segment en el que esté
+   */
   ngOnInit() {
 
     this.titulo = this.days[this.id - 1];
@@ -86,7 +88,9 @@ export class ModalDiaPage implements OnInit {
 
   }
 
-  /* Iguala la categía a 0*/
+  /**
+   * Iguala la categía a 0
+   */
   ionViewWillEnter() {
     this.category = "0";
     this.SwipedTabsSlider.length().then(l => {
@@ -94,13 +98,18 @@ export class ModalDiaPage implements OnInit {
     });
   }
 
-  /* Recoge el ID del tabs en el que se encuentra */
+  /**
+   * Recoge el ID del tabs en el que se encuentra
+   */
   ionViewDidEnter() {
     this.SwipedTabsIndicator = document.getElementById("indicator");
   }
 
-
-  /* Muestra los entrenamientos dependiendo de la categoría y del día en el que estemos */
+  /**
+   * Muestra los entrenamientos dependiendo de la categoría y del día en el que estemos
+   * @param dia Pasa el día para hacer la consulta
+   * @param categoria Pasa la categoría para hacer la consulta
+   */
   mostrarEntrenamientos(dia, categoria) {
 
     this.presentLoading("Cargando");
@@ -126,7 +135,9 @@ export class ModalDiaPage implements OnInit {
 
   }
 
-  /* Método principal que llama al resto de métodos para cargarlo todo */
+  /**
+   * Método principal que llama al resto de métodos para cargarlo todo
+   */
   metodoPrincipal() {
 
     this.SwipedTabsSlider.getActiveIndex().then(i => {
@@ -140,13 +151,18 @@ export class ModalDiaPage implements OnInit {
 
   }
 
-  /* Convierte el id del tab actual en una categoria */
+  /**
+   * Convierte el id del tab actual en una categoria
+   * @param indice Pasa el indice para convertirlo en categoría
+   */
   conversorCategoria(indice) {
     this.actual = this.categoria[indice];
     return this.actual;
   }
 
-  /* Muestra el modal para editar */
+  /**
+   * Muestra el modal para editar
+   */
   async mostrarModalEditar() {
     const modal = await this.modalController.create({
       component: ModalEditarPage,
@@ -163,7 +179,10 @@ export class ModalDiaPage implements OnInit {
 
   //Slide
 
-  /* Actualiza la categoría que esté en ese momento activa*/
+  /**
+   * Actualiza la categoría que esté en ese momento activa
+   * @param cat 
+   */
   updateCat(cat: Promise<any>) {
     cat.then(dat => {
       this.category = dat;
@@ -171,7 +190,9 @@ export class ModalDiaPage implements OnInit {
     });
   }
 
-  /* El método que permite actualizar el indicado cuando se cambia de slide*/
+  /**
+   * El método que permite actualizar el indicado cuando se cambia de slide
+   */
   updateIndicatorPosition() {
     this.SwipedTabsSlider.getActiveIndex().then(i => {
 
@@ -186,7 +207,10 @@ export class ModalDiaPage implements OnInit {
 
   }
 
-  /* El método que anima la "rayita" mientras nos estamos deslizando por el slide*/
+  /**
+   * El método que anima la "rayita" mientras nos estamos deslizando por el slide
+   * @param e 
+   */
   animateIndicator(e) {
     if (this.SwipedTabsIndicator)
       this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' +
@@ -195,6 +219,11 @@ export class ModalDiaPage implements OnInit {
 
 
   //Loading
+
+  /**
+   * Presenta el loading en la pantalla
+   * @param msg El texto del mensaje
+   */
   async presentLoading(msg) {
 
     let myloading = await this.loadingController.create({
@@ -204,11 +233,18 @@ export class ModalDiaPage implements OnInit {
     return await myloading.present();
   }
 
+  /**
+   * Cierra el modal 
+   */
   cerrarModal() {
     this.modalController.dismiss();
   }
 
   //Logged
+
+  /**
+   * Comprueba si está logeado
+   */
   isLogged() {
     return this.authService.isLogged();
   }

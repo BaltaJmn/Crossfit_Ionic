@@ -17,11 +17,17 @@ export class PopoverLogoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Cierra la sesión del usuario
+   */
   aceptar() {
     this.authService.logOut();
     this.popoverController.dismiss()
   }
 
+  /**
+   * Cierra el popover
+   */
   cancelar() {
     this.popoverController.dismiss()
   }

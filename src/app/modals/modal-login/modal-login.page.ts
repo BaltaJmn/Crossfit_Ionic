@@ -81,7 +81,10 @@ export class ModalLoginPage implements OnInit {
 
   //Slide
 
-  /* Actualiza la categoría que esté en ese momento activa*/
+  /**
+   * Actualiza la categoría que esté en ese momento activa
+   * @param cat 
+   */
   updateCat(cat: Promise<any>) {
     cat.then(dat => {
       this.category = dat;
@@ -94,7 +97,9 @@ export class ModalLoginPage implements OnInit {
     });
   }
 
-  /* El método que permite actualizar el indicado cuando se cambia de slide*/
+  /**
+   * El método que permite actualizar el indicado cuando se cambia de slide
+   */
   updateIndicatorPosition() {
     this.SwipedTabsSlider.getActiveIndex().then(i => {
 
@@ -106,7 +111,10 @@ export class ModalLoginPage implements OnInit {
 
   }
 
-  /* El método que anima la "rayita" mientras nos estamos deslizando por el slide*/
+  /**
+   * El método que anima la "rayita" mientras nos estamos deslizando por el slide
+   * @param e 
+   */
   animateIndicator(e) {
     if (this.SwipedTabsIndicator)
       this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' +
@@ -117,6 +125,10 @@ export class ModalLoginPage implements OnInit {
 
   //Loading
 
+  /**
+   * Muestra el loading en pantalla 
+   * @param msg El texto que se muestra en el loading
+   */
   async presentLoading(msg) {
 
     let myloading = await this.loadingController.create({
@@ -126,10 +138,16 @@ export class ModalLoginPage implements OnInit {
     return await myloading.present();
   }
 
+  /**
+   * Finaliza el loading
+   */
   finishLoading() {
     this.loadingController.dismiss();
   }
 
+  /**
+   * Cierra el modal
+   */
   cerrarModal() {
     this.modalController.dismiss();
   }
@@ -138,6 +156,9 @@ export class ModalLoginPage implements OnInit {
 
   //Formularios
 
+  /**
+   * Inicia sesión con un usuario y contraseña introducidas por un formulario
+   */
   login() {
 
     /* Reune los datos del formulario */
@@ -192,6 +213,9 @@ export class ModalLoginPage implements OnInit {
       });
   }
 
+  /**
+   * Registra a un usuario con los datos introducidos a través de un formulario
+   */
   register() {
 
     /* Opciones para la cámara */
@@ -257,12 +281,19 @@ export class ModalLoginPage implements OnInit {
 
   }
 
-  /* Comprueba el estado logeado */
+  /**
+   * Comprueba que si estás logeado
+   */
   isLogged() {
     return this.authServicio.isLogged();
   }
 
   //Notificaciones
+
+  /**
+   * Muestra una notificación en el móvil
+   * @param msg El texto te la notificación
+   */
   mostrarNotificacion(msg) {
     this.localNotifications.schedule({
       id: 1,

@@ -37,12 +37,18 @@ export class PopoverFotoComponent implements OnInit {
 
   }
 
+  /**
+   * LLama al método de abrir la cámara para actualizar la foto de perfil
+   */
   aceptar() {
     this.authService.actualizarFoto().then(() => {
       this.popoverController.dismiss()
     });
   }
 
+  /**
+   * Cierra el popover
+   */
   cancelar() {
     this.popoverController.dismiss()
   }

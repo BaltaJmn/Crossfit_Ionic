@@ -14,6 +14,11 @@ export class ToastModule {
     toast;
     constructor(private toastCtrl: ToastController) { }
 
+
+    /**
+     * Muestra el mensaje del toast
+     * @param msg Pasamos por parámetro el mensaje que se muestra en el toast
+     */
     async show(msg) {
         const toast = await this.toastCtrl.create({
             message: msg,
@@ -25,6 +30,11 @@ export class ToastModule {
         toast.present();
     }
 
+    /**
+     * Muestra el toast en la parte superior de la pantalla
+     * @param msg Pasamos por parámetro el mensaje que se muestra en el toast
+     * @param time Pasamos por parámetro el tiempo que va a estar en pantalla el toast
+     */
     async showTop(msg, time?) {
         if (this.toast)
             this.toast.dismiss();
@@ -49,6 +59,11 @@ export class ToastModule {
 
     }
 
+    /**
+     * Muestra el toast en la pantalla 
+     * @param msg Pasamos por parámetro el mensaje que se muestra en el toast
+     * @param time Pasamos por parámetro el tiempo que va a estar en pantalla el toast
+     */
     mostrarToast(msg, time) {
         setTimeout(() => {
             this.show(msg);

@@ -13,6 +13,10 @@ export class EncryptServiceService {
 
   constructor() { }
 
+  /**
+   * Encripta los datos 
+   * @param data Datos a encriptar
+   */
   encryptData(data) {
 
     try {
@@ -23,6 +27,10 @@ export class EncryptServiceService {
 
   }
 
+  /**
+   * Desencripta los datos
+   * @param data Datos a desencriptar
+   */
   decryptData(data:any) {
 
     try {
