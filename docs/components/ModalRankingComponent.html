@@ -1,0 +1,1105 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Crossfit documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Crossfit documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ModalRankingComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modals/modal-ranking/modal-ranking.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-modal-ranking</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./modal-ranking.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./modal-ranking.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ionInfiniteScroll">ionInfiniteScroll</a>
+                            </li>
+                            <li>
+                                <a href="#listadoHTML">listadoHTML</a>
+                            </li>
+                            <li>
+                                <a href="#listadoRanking">listadoRanking</a>
+                            </li>
+                            <li>
+                                <a href="#top1Avatar">top1Avatar</a>
+                            </li>
+                            <li>
+                                <a href="#top1Usuario">top1Usuario</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cerrarModal">cerrarModal</a>
+                            </li>
+                            <li>
+                                <a href="#finishLoading">finishLoading</a>
+                            </li>
+                            <li>
+                                <a href="#getItems">getItems</a>
+                            </li>
+                            <li>
+                                <a href="#initializeItems">initializeItems</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#presentLoading">presentLoading</a>
+                            </li>
+                            <li>
+                                <a href="#updateRanking">updateRanking</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html">AuthService</a>, loadingController: LoadingController, modalController: ModalController)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>loadingController</td>
+                                                  
+                                                        <td>
+                                                                    <code>LoadingController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalController</td>
+                                                  
+                                                        <td>
+                                                                    <code>ModalController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cerrarModal"></a>
+                        <span class="name">
+                            <b>
+                            cerrarModal
+                            </b>
+                            <a href="#cerrarModal"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>cerrarModal()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:97</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="finishLoading"></a>
+                        <span class="name">
+                            <b>
+                            finishLoading
+                            </b>
+                            <a href="#finishLoading"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>finishLoading()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getItems"></a>
+                        <span class="name">
+                            <b>
+                            getItems
+                            </b>
+                            <a href="#getItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getItems(ev: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Va buscando entre los objetos que coincidan con lo introducido por parámetro</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ev</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <p>Escritura en el formulario</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initializeItems"></a>
+                        <span class="name">
+                            <b>
+                            initializeItems
+                            </b>
+                            <a href="#initializeItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initializeItems()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Carga los datos y los vuelca en un array</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="presentLoading"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            presentLoading
+                            </b>
+                            <a href="#presentLoading"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>presentLoading(msg)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:84</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>msg</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{}</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateRanking"></a>
+                        <span class="name">
+                            <b>
+                            updateRanking
+                            </b>
+                            <a href="#updateRanking"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateRanking(event?)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Se encarga de realizar una consulta a la base de datos ordenando los usuario por los días registrados</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <p>Evento de deslizar el dedo</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ionInfiniteScroll"></a>
+                        <span class="name">
+                            <b>
+                            ionInfiniteScroll</b>
+                            <a href="#ionInfiniteScroll"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>IonInfiniteScroll</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;infiniteScroll&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="listadoHTML"></a>
+                        <span class="name">
+                            <b>
+                            listadoHTML</b>
+                            <a href="#listadoHTML"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="listadoRanking"></a>
+                        <span class="name">
+                            <b>
+                            listadoRanking</b>
+                            <a href="#listadoRanking"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="top1Avatar"></a>
+                        <span class="name">
+                            <b>
+                            top1Avatar</b>
+                            <a href="#top1Avatar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="top1Usuario"></a>
+                        <span class="name">
+                            <b>
+                            top1Usuario</b>
+                            <a href="#top1Usuario"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modals/modal-ranking/modal-ranking.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AuthService } from &#x27;src/app/servicios/auth.service&#x27;;
+import { IonInfiniteScroll, LoadingController, ModalController } from &#x27;@ionic/angular&#x27;;
+import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-modal-ranking&#x27;,
+  templateUrl: &#x27;./modal-ranking.component.html&#x27;,
+  styleUrls: [&#x27;./modal-ranking.component.scss&#x27;]
+})
+export class ModalRankingComponent implements OnInit {
+
+  @ViewChild(&#x27;infiniteScroll&#x27;) ionInfiniteScroll: IonInfiniteScroll;
+
+  listadoRanking: any &#x3D; [];
+  listadoHTML: any &#x3D; [];
+  top1Avatar &#x3D; null;
+  top1Usuario &#x3D; null;
+
+  constructor(
+    private authService: AuthService,
+    private loadingController: LoadingController,
+    private modalController: ModalController
+  ) { }
+
+  ngOnInit() {
+    this.updateRanking(null);
+  }
+
+  /**
+   * Se encarga de realizar una consulta a la base de datos ordenando los usuario por los días registrados
+   * @param event Evento de deslizar el dedo
+   */
+  updateRanking(event?) {
+
+    this.listadoRanking &#x3D; [];
+
+    this.presentLoading(&quot;Cargando&quot;);
+
+    this.authService.getRanking().then(d &#x3D;&gt; {
+
+      d.forEach((u) &#x3D;&gt; {
+        this.listadoRanking.push(u);
+      });
+
+      this.listadoHTML &#x3D; this.listadoRanking;
+
+      this.top1Avatar &#x3D; this.listadoRanking[0].avatar;
+      this.top1Usuario &#x3D; this.listadoRanking[0].usuario;
+
+      this.finishLoading();
+
+      event.target.complete();
+    });
+  }
+
+  //SEARCH BAR
+
+  /**
+   * Carga los datos y los vuelca en un array
+   */
+  initializeItems() {
+    this.listadoHTML &#x3D; this.listadoRanking;
+  }
+
+  /**
+   * Va buscando entre los objetos que coincidan con lo introducido por parámetro
+   * @param ev Escritura en el formulario
+   */
+  getItems(ev: any) {
+    this.initializeItems();
+    // set val to the value of the searchbar
+    let val &#x3D; ev.target.value;
+
+    // if the value is an empty string don&#x27;t filter the items
+    if (val &amp;&amp; val.trim() !&#x3D; &#x27;&#x27;) {
+      this.listadoHTML &#x3D; this.listadoRanking.filter((item) &#x3D;&gt; {
+        return (item.usuario.toLowerCase().indexOf(val.toLowerCase()) &gt; -1);
+      })
+    }
+  }
+
+  //Loading
+
+  async presentLoading(msg) {
+
+    let myloading &#x3D; await this.loadingController.create({
+      message: msg
+    });
+
+    return await myloading.present();
+  }
+
+  finishLoading() {
+    this.loadingController.dismiss();
+  }
+
+  cerrarModal() {
+    this.modalController.dismiss();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header no-border color&#x3D;&quot;primary&quot;&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-title&gt;
+      &lt;ion-icon name&#x3D;&quot;ios-arrow-back&quot; (click)&#x3D;&quot;cerrarModal()&quot;&gt;&lt;/ion-icon&gt;
+      &lt;span style&#x3D;&quot;font-weight:normal; text-align:center&quot;&gt;RANKING DE FUERTESITOS&lt;/span&gt;
+    &lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+
+  &lt;ion-card color&#x3D;&quot;primary&quot;&gt;
+
+    &lt;ion-row&gt;
+
+      &lt;ion-col size&#x3D;&quot;4&quot; style&#x3D;&quot;text-align: center&quot;&gt;
+        &lt;img src&#x3D;&quot;../../../assets/imgs/izq.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col size&#x3D;&quot;4&quot; style&#x3D;&quot;text-align: center&quot;&gt;
+        &lt;ion-row&gt;
+          &lt;ion-avatar&gt;
+            &lt;ion-img
+              src&#x3D;&quot;{{top1Avatar}}&quot; style&#x3D;&quot;width:110px;height: 110px&quot;&gt;&lt;/ion-img&gt;
+          &lt;/ion-avatar&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;span style&#x3D;&quot;text-align: center; margin-top: 35px; margin-left: 35%&quot;&gt;{{top1Usuario}}&lt;/span&gt;
+        &lt;/ion-row&gt;
+
+      &lt;/ion-col&gt;
+
+      &lt;ion-col size&#x3D;&quot;4&quot; style&#x3D;&quot;text-align: center&quot;&gt;
+        &lt;img src&#x3D;&quot;../../../assets/imgs/der.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col size&#x3D;&quot;12&quot;&gt;
+
+      &lt;/ion-col&gt;
+
+    &lt;/ion-row&gt;
+
+  &lt;/ion-card&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+  &lt;ion-row&gt;
+    &lt;ion-col float-left&gt;
+      &lt;ion-searchbar #searchBar id&#x3D;&quot;searchBar&quot; showCancelButton
+        cancelButtonText&#x3D;&quot;Cancelar&quot; placeholder&#x3D;&quot;Buscar&quot;
+        (ionInput)&#x3D;&quot;getItems($event)&quot; (ionClear)&#x3D;&quot;cleared()&quot;
+        (ionCancel)&#x3D;&quot;onCancel()&quot;&gt;&lt;/ion-searchbar&gt;
+    &lt;/ion-col&gt;
+  &lt;/ion-row&gt;
+
+  &lt;ion-refresher (ionRefresh)&#x3D;&quot;updateRanking($event)&quot;&gt;
+    &lt;ion-refresher-content
+      pullingIcon&#x3D;&quot;arrow-dropdown&quot;
+      pullingText&#x3D;&quot;Arrastra para refrescar&quot;
+      refreshingSpinner&#x3D;&quot;crescent&quot;
+      refreshingText&#x3D;&quot;Cargando...&quot;&gt;
+    &lt;/ion-refresher-content&gt;
+  &lt;/ion-refresher&gt;
+
+  &lt;ion-list #dynamicList id&#x3D;&quot;dynamicList&quot;&gt;
+    &lt;ion-item-sliding *ngFor&#x3D;&quot;let item of listadoHTML;let i&#x3D; index&quot;&gt;
+      &lt;ion-item&gt;
+        &lt;ion-avatar slot&#x3D;&quot;end&quot;&gt;
+          &lt;ion-img [src]&#x3D;&quot;item.avatar&quot;&gt;&lt;/ion-img&gt;
+        &lt;/ion-avatar&gt;
+
+        &lt;ion-label slot&#x3D;&quot;start&quot;&gt;
+          &lt;h3&gt;#{{(i+1)}}
+            {{item.usuario}}&lt;/h3&gt;
+          &lt;h4&gt;{{item.dias}} Días&lt;/h4&gt;
+        &lt;/ion-label&gt;
+      &lt;/ion-item&gt;
+    &lt;/ion-item-sliding&gt;
+  &lt;/ion-list&gt;
+&lt;/ion-content&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./modal-ranking.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header no-border color="primary">  <ion-toolbar color="primary">    <ion-title>      <ion-icon name="ios-arrow-back" (click)="cerrarModal()"></ion-icon>      <span style="font-weight:normal; text-align:center">RANKING DE FUERTESITOS</span>    </ion-title>  </ion-toolbar>  <ion-card color="primary">    <ion-row>      <ion-col size="4" style="text-align: center">        <img src="../../../assets/imgs/izq.png">      </ion-col>      <ion-col size="4" style="text-align: center">        <ion-row>          <ion-avatar>            <ion-img              src="{{top1Avatar}}" style="width:110px;height: 110px"></ion-img>          </ion-avatar>        </ion-row>        <ion-row>          <span style="text-align: center; margin-top: 35px; margin-left: 35%">{{top1Usuario}}</span>        </ion-row>      </ion-col>      <ion-col size="4" style="text-align: center">        <img src="../../../assets/imgs/der.png">      </ion-col>      <ion-col size="12">      </ion-col>    </ion-row>  </ion-card></ion-header><ion-content>  <ion-row>    <ion-col float-left>      <ion-searchbar #searchBar id="searchBar" showCancelButton        cancelButtonText="Cancelar" placeholder="Buscar"        (ionInput)="getItems($event)" (ionClear)="cleared()"        (ionCancel)="onCancel()"></ion-searchbar>    </ion-col>  </ion-row>  <ion-refresher (ionRefresh)="updateRanking($event)">    <ion-refresher-content      pullingIcon="arrow-dropdown"      pullingText="Arrastra para refrescar"      refreshingSpinner="crescent"      refreshingText="Cargando...">    </ion-refresher-content>  </ion-refresher>  <ion-list #dynamicList id="dynamicList">    <ion-item-sliding *ngFor="let item of listadoHTML;let i= index">      <ion-item>        <ion-avatar slot="end">          <ion-img [src]="item.avatar"></ion-img>        </ion-avatar>        <ion-label slot="start">          <h3>#{{(i+1)}}            {{item.usuario}}</h3>          <h4>{{item.dias}} Días</h4>        </ion-label>      </ion-item>    </ion-item-sliding>  </ion-list></ion-content></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'ListPage', 'selector': 'app-list'},{'name': 'ModalCreaUsuarioPage', 'selector': 'app-modal-crea-usuario'},{'name': 'ModalDiaPage', 'selector': 'app-modal-dia'},{'name': 'ModalEditarPage', 'selector': 'app-modal-editar'},{'name': 'ModalLoginPage', 'selector': 'app-modal-login'},{'name': 'ModalRankingComponent', 'selector': 'app-modal-ranking'},{'name': 'PopoverFotoComponent', 'selector': 'app-popover-foto'},{'name': 'PopoverLogoutComponent', 'selector': 'app-popover-logout'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ModalRankingComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ModalRankingComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
