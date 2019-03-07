@@ -12,14 +12,14 @@ import { SemanaservicioService } from 'src/app/servicios/semanaservicio.service'
 export class ModalEditarPage implements OnInit {
 
   //Formulario
-  private editFormGroup: FormGroup;
-  private id: any;
-  private dia: any;
-  private categoria: any;
-  private ej1: any;
-  private ej2: any;
-  private ej3: any;
-  private ej4: any;
+  public editFormGroup: FormGroup;
+  public id: any;
+  public dia: any;
+  public categoria: any;
+  public ej1: any;
+  public ej2: any;
+  public ej3: any;
+  public ej4: any;
 
   constructor(
     public formBuilder: FormBuilder,

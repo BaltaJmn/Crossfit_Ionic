@@ -22,7 +22,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage, ModalDiaPage, ModalEditarPage], 
+  declarations: [HomePage, ModalDiaPage, /*ModalEditarPage*/], 
 
   entryComponents: [
     HomePage,

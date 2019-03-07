@@ -22,7 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ModalDiaPage, ModalEditarPage],
+  declarations: [/*ModalDiaPage, ModalEditarPage*/],
   entryComponents: [ModalEditarPage],
 })
 export class ModalDiaPageModule {}

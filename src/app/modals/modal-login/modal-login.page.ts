@@ -29,11 +29,11 @@ export class ModalLoginPage implements OnInit {
   titulo: any = "Iniciar Sesión";
 
   //Formulario
-  private createUserFormGroup: FormGroup;
-  private loginUserFormGroup: FormGroup;
+  public createUserFormGroup: FormGroup;
+  public loginUserFormGroup: FormGroup;
 
   //Inicio Sesión
-  private datosUsuario = [];
+  public datosUsuario = [];
 
 
   constructor(

@@ -38,6 +38,7 @@ import { TranslateModule, TranslateLoader, TranslatePipe } from '@ngx-translate/
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalRankingComponent } from './modals/modal-ranking/modal-ranking.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export function setTranslateLoader(http: any) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,7 +46,7 @@ export function setTranslateLoader(http: any) {
 
 
 @NgModule({
-  declarations: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent, ModalRankingComponent],
+  declarations: [AppComponent, /*ModalLoginPage,*/ PopoverLogoutComponent, PopoverFotoComponent, ModalRankingComponent],
   entryComponents: [AppComponent, ModalLoginPage, PopoverLogoutComponent, PopoverFotoComponent, ModalRankingComponent],
   imports: [
     BrowserModule,
@@ -63,7 +64,7 @@ export function setTranslateLoader(http: any) {
         useFactory: (setTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,
